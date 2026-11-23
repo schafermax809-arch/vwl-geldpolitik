@@ -1,9 +1,10 @@
+import {resolveOSRoute} from './lib/os-routes.js';
 import {topics} from './data/content.js';
 import {questions} from './data/questions.js';
 import {load,topicProgress,labModel,esc,STORE} from './lib/core.js';
 
 const $=s=>document.querySelector(s),desktop=$('#os-desktop');
-const preferences='vwl-os-preferences-v1';let config={theme:'pastel',positions:{}},z=20,activeProgram='lernen',drag=null;
+const preferences='vwl-os-preferences-v1';let config={theme:'pastel',positions:{}},z=20,drag=null;
 try{config={...config,...JSON.parse(localStorage.getItem(preferences)||'{}')}}catch{}
 const programs=[
 {id:'lernen',file:'EZB.exe',label:'Lernmodule',route:'lernen',icon:'bank',color:'lavender'},
@@ -26,10 +27,21 @@ function progress(){const s=load({getItem:k=>localStorage.getItem(k)}),p=Math.ro
 function clock(){$('#os-clock').textContent=new Intl.DateTimeFormat('de-DE',{hour:'2-digit',minute:'2-digit'}).format(new Date())}clock();setInterval(clock,30000);
 function focusWindow(id){const w=$('#window-'+id);w.style.zIndex=++z;w.querySelector('.window-titlebar')?.setAttribute('data-active','true')}
 function openWindow(id){const w=$('#window-'+id);if(!w)return;w.hidden=false;w.dataset.closed='false';focusWindow(id);tasks();if(matchMedia('(max-width:850px)').matches)w.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'start'})}
-function launch(id){if(id==='lab'||id==='guide'||id==='welcome'){openWindow(id);return}const p=programs.find(p=>p.id===id)||{id,file:id==='labor'?'GELDPOLITIK-LABOR.exe':'QUELLEN.txt',route:id};activeProgram=id;const state=load({getItem:k=>localStorage.getItem(k)}),hash=p.route==='lernen'?'lernen/'+(state.last||'organe'):p.route;$('#program-title').textContent=p.file;$('#standalone-link').href='index.html#'+hash;const frame=$('#program-frame');if(frame.getAttribute('src')==='about:blank')frame.src='workbench.html#'+hash;else frame.contentWindow.location.hash=hash;openWindow('program')}
+function launch(id,routeOverride){
+ if(id==='lab'||id==='guide'||id==='welcome'){openWindow(id);return}
+ const p=programs.find(p=>p.id===id)||{id,route:id},state=load({getItem:k=>localStorage.getItem(k)});
+ const hash=routeOverride||(p.route==='lernen'?'lernen/'+(state.last||'organe'):p.route),resolved=resolveOSRoute(hash);
+ if(!resolved||resolved.id==='welcome')return;
+ $('#program-title').textContent=resolved.file;$('#standalone-link').href='classic.html#'+hash;
+ history.replaceState(null,'',location.pathname+location.search+'#'+hash);
+ const frame=$('#program-frame');if(frame.getAttribute('src')==='about:blank')frame.src='workbench.html?v=2-os-default#'+hash;else frame.contentWindow.location.hash=hash;
+ openWindow('program');
+}
+function openFromAddress(){const r=resolveOSRoute(location.hash);if(!r)return;if(r.id==='welcome'){closeWindow('program',false);openWindow('welcome');return}launch(r.id,r.hash)}
+function syncProgramAddress(){try{const hash=$('#program-frame').contentWindow.location.hash.slice(1),r=resolveOSRoute(hash);if(!r||r.id==='welcome')return;$('#program-title').textContent=r.file;$('#standalone-link').href='classic.html#'+hash;history.replaceState(null,'',location.pathname+location.search+'#'+hash);tasks()}catch{}}
 function tasks(){$('#task-list').innerHTML=['welcome','lab','program','guide'].filter(id=>$('#window-'+id).dataset.closed!=='true').map(id=>{const w=$('#window-'+id),name=id==='welcome'?'WILLKOMMEN':id==='lab'?'ZINSLABOR':id==='guide'?'LIESMICH':$('#program-title').textContent;return `<button data-task="${id}" class="${w.hidden?'minimized':''}" aria-label="${esc(name)} ${w.hidden?'wiederherstellen':'in den Vordergrund holen'}">${esc(name)}</button>`}).join('')}
 $('#window-program').dataset.closed='true';$('#window-guide').dataset.closed='true';
-function closeWindow(id,closed){const w=$('#window-'+id);w.hidden=true;w.dataset.closed=String(closed);tasks()}
+function closeWindow(id,closed){const w=$('#window-'+id);w.hidden=true;w.dataset.closed=String(closed||(id==='program'&&$('#program-frame').getAttribute('src')==='about:blank'));if(id==='program'&&closed)history.replaceState(null,'',location.pathname+location.search);tasks()}
 let tick=0,rate=3;const format=(n,d=1)=>new Intl.NumberFormat('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
 function updateLab(animateOnly=false){const m=labModel(rate),up=rate>3,down=rate<3,direction=up?'RESTRIKTIVER IMPULS':down?'EXPANSIVER IMPULS':'AUSGANGSPUNKT',flow=up?'→':down?'→':'·',pulse=['·','•','·',' '][tick%4],credit=up?'teurer':down?'günstiger':'Kredite',demand=up?'sinkt':down?'steigt':'Nachfrage';$('#ascii-scene').textContent=`   ______          __________        /\\   /\\\n  / EZB /|        | GESCHÄFTS |      /  \\_/  \\\n | [€] | |  ${pulse} ${flow}  |   BANK   | ${pulse} ${flow} | WIRTSCH. |\n |_____|/         |__________|      |_________|\n   Zins ${up?'↑':down?'↓':'='}          ${credit.padEnd(10)}      ${demand}`;if(animateOnly)return;$('#lab-direction').textContent=direction;$('#os-rate-value').textContent=format(rate,2)+' %';$('#os-rate').setAttribute('aria-valuetext',format(rate,2)+' Prozent');$('#os-credit').textContent=format(m.credit)+' %';$('#os-demand').textContent=format(m.demand,0);$('#os-pressure').textContent=format(m.pressure,0);$('#lab-message').textContent=up?'> Nachfrage & Preisdruck werden tendenziell gedämpft.':down?'> Nachfrage & Preisdruck können tendenziell steigen.':'> Verändere den Zins und beobachte die Kette.'}
 $('#os-rate').addEventListener('input',e=>{rate=+e.target.value;updateLab()});updateLab();if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{tick++;if(!$('#window-lab').hidden)updateLab(true)},650);
@@ -37,11 +49,12 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 $('#start-button').addEventListener('click',()=>{const open=$('#start-menu').hidden;$('#start-menu').hidden=!open;$('#start-button').setAttribute('aria-expanded',String(open))});
 document.addEventListener('click',e=>{if(!e.target.closest('#start-button,#start-menu')){$('#start-menu').hidden=true;$('#start-button').setAttribute('aria-expanded','false')}});
 $('#os-theme').addEventListener('click',()=>{config.theme=config.theme==='terminal'?'pastel':'terminal';theme()});
-$('#desktop-reset').addEventListener('click',()=>{config.positions={};persist();document.querySelectorAll('.os-window').forEach(w=>{w.style.left='';w.style.top='';w.classList.remove('maximized')});openWindow('welcome');openWindow('lab')});
-$('#program-frame').addEventListener('load',()=>{sendTheme();try{$('#program-frame').contentDocument?.addEventListener('pointerdown',()=>focusWindow('program'))}catch{}});
+$('#desktop-reset').addEventListener('click',()=>{closeWindow('program',false);history.replaceState(null,'',location.pathname+location.search);config.positions={};persist();document.querySelectorAll('.os-window').forEach(w=>{w.style.left='';w.style.top='';w.classList.remove('maximized')});openWindow('welcome');openWindow('lab')});
+$('#program-frame').addEventListener('load',()=>{sendTheme();try{$('#program-frame').contentDocument?.addEventListener('pointerdown',()=>focusWindow('program'));$('#program-frame').contentWindow.addEventListener('hashchange',syncProgramAddress);syncProgramAddress()}catch{}});
 window.addEventListener('storage',e=>{if(e.key===STORE)progress()});window.addEventListener('focus',progress);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#start-menu').hidden=true;$('#start-button').setAttribute('aria-expanded','false')}});
 document.querySelectorAll('.os-window').forEach(w=>{const id=w.dataset.window,pos=config.positions?.[id];if(pos&&Number.isFinite(pos.x)&&Number.isFinite(pos.y)&&matchMedia('(min-width:851px)').matches){w.style.left=Math.max(0,Math.min(pos.x,desktop.clientWidth-150))+'px';w.style.top=Math.max(0,Math.min(pos.y,desktop.clientHeight-60))+'px'}w.addEventListener('pointerdown',()=>focusWindow(id));w.querySelector('.window-titlebar').addEventListener('pointerdown',e=>{if(e.target.closest('button')||!matchMedia('(min-width:851px)').matches||w.classList.contains('maximized'))return;const r=w.getBoundingClientRect(),d=desktop.getBoundingClientRect();drag={id,w,offsetX:e.clientX-r.left,offsetY:e.clientY-r.top,desktop:d};e.currentTarget.setPointerCapture(e.pointerId);e.preventDefault()});});
 document.addEventListener('pointermove',e=>{if(!drag)return;const{x,y}={x:Math.max(0,Math.min(desktop.clientWidth-drag.w.offsetWidth,e.clientX-drag.desktop.left-drag.offsetX)),y:Math.max(0,Math.min(desktop.clientHeight-40,e.clientY-drag.desktop.top-drag.offsetY))};drag.w.style.left=x+'px';drag.w.style.top=y+'px'});
 document.addEventListener('pointerup',()=>{if(!drag)return;config.positions??={};config.positions[drag.id]={x:parseFloat(drag.w.style.left),y:parseFloat(drag.w.style.top)};persist();drag=null});
-theme();progress();tasks();
+window.addEventListener('hashchange',openFromAddress);
+theme();progress();tasks();if(location.hash&&location.hash!=='#dashboard')openFromAddress();

@@ -46,3 +46,9 @@ Browserbedienung erfolgte über die verfügbaren Chrome-/In-App-Browserwerkzeuge
 - Modellzins per Tastatur auf 6 % gesetzt; Richtung und Modellwerte reagieren.
 - Vollständige Module im eingebetteten Lernfenster geladen.
 - Schmale Darstellung verwendet gestapelte Fenster und eine kompakte Taskleiste.
+
+## Übernahme als reguläre Startseite
+
+- Kapitel-, Aufgaben-, Labor- und Ergebnislinks werden mit vollständigem Hash an das Programmfenster übergeben.
+- Die klassische Oberfläche und die ursprünglichen Designvarianten bleiben unter `classic.html` nutzbar.
+- Zusätzliche Routentests prüfen alle sechs Portal-Kapitel sowie Aufgaben- und Ergebnisadressen.
