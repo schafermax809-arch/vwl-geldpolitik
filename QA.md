@@ -36,3 +36,13 @@ Browserbedienung erfolgte über die verfügbaren Chrome-/In-App-Browserwerkzeuge
 - Das Labor ist didaktisch, keine empirische Prognose.
 - Speicherung ist browserlokal. Gerätesynchronisierung erfolgt bei Bedarf über JSON-Export und -Import.
 - Keine verbindliche Aussage über eine konkrete Klausurnote oder Aufgabenverteilung der Schule.
+
+## Retro-/ASCII-Vorschau
+
+- Fenster per Titelleiste gezogen; neue Position im DOM und in den Desktop-Einstellungen bestätigt.
+- Minimieren und Wiederherstellen erhält den eingestellten Modellzins.
+- Maximieren und Schließen der Lernprogramme getestet.
+- Pastell- und Terminal-Modus einschließlich eingebettetem Lerninhalt geprüft.
+- Modellzins per Tastatur auf 6 % gesetzt; Richtung und Modellwerte reagieren.
+- Vollständige Module im eingebetteten Lernfenster geladen.
+- Schmale Darstellung verwendet gestapelte Fenster und eine kompakte Taskleiste.

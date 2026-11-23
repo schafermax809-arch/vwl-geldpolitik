@@ -6,6 +6,12 @@ Interaktives Lernstudio für Lerngebiet 7, Klasse 13 am Beruflichen Gymnasium Wi
 - Drei Designs: https://schafermax809-arch.github.io/vwl-geldpolitik/designs.html
 - Hauptplattform: https://schafermax809-arch.github.io/lernzettel/
 
+## Retro-/ASCII-Designvorschau
+
+Unter [retro.html](https://schafermax809-arch.github.io/vwl-geldpolitik/retro.html) ist ein zusätzlicher, vollständig bedienbarer „VWL OS“-Entwurf verfügbar: Pastell-Desktop, Terminal-Modus, Pixel-Symbole, verschiebbare und minimierbare Fenster, Taskleiste und ein animiertes ASCII-Zinslabor. Die Lernprogramme öffnen sich über `workbench.html` mit einem eigenen Retro-Stil. Die bestehende Startseite bleibt separat verfügbar.
+
+Es wird ein einziges Lernprogramm-Fenster wiederverwendet, sodass Klausuren, Aufgaben und Karten innerhalb derselben App-Instanz laufen. Lernstände werden unter dem vorhandenen Schlüssel gespeichert. Desktop-Thema und Fensterpositionen verwenden separat `vwl-os-preferences-v1`. Auf schmalen Bildschirmen werden Fenster untereinander angeordnet.
+
 ## Enthalten
 
 Sechs ausführliche Lernmodule, 60 kuratierte Aufgaben in sieben Formaten (darunter 24 offene Fragen), 40 Karteikarten mit Wiederholungsplanung, vier interaktive Simulationen, Glossar und fünf Rechenwege, Mindmap und Forderungskatalog, Dark/Light Mode sowie drei vollständig anwendbare Gestaltungen.
