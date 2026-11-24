@@ -52,3 +52,9 @@ Browserbedienung erfolgte über die verfügbaren Chrome-/In-App-Browserwerkzeuge
 - Kapitel-, Aufgaben-, Labor- und Ergebnislinks werden mit vollständigem Hash an das Programmfenster übergeben.
 - Die klassische Oberfläche und die ursprünglichen Designvarianten bleiben unter `classic.html` nutzbar.
 - Zusätzliche Routentests prüfen alle sechs Portal-Kapitel sowie Aufgaben- und Ergebnisadressen.
+
+## Vollflächiger Lernmodus (24. November 2026)
+
+Maximierte Programme füllen den gesamten Browser-Inhaltsbereich. Desktop, andere Fenster, Menü- und Taskleiste sind ausgeblendet. Eine schmale Programmleiste enthält „Vollbild verlassen“. Escape funktioniert auch aus dem eingebetteten Lernprogramm. Beim Zurückwechseln bleibt dieselbe Programm-Instanz mit ihren Eingaben erhalten.
+
+Geprüft bei 319 × 761 und 1280 × 720 CSS-Pixeln: Fenster beginnt bei (0, 0) und entspricht exakt der Viewport-Größe. Menü, Icons, andere Fenster und Taskleiste sind ausgeblendet. Escape aus einem Textfeld und der Rückkehrknopf erhalten die eingegebene Probeantwort. Auch das Zinslabor füllt die ganze Fläche aus.

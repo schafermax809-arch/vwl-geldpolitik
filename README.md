@@ -10,7 +10,7 @@ Interaktives Lernstudio für Lerngebiet 7, Klasse 13 am Beruflichen Gymnasium Wi
 
 Unter [retro.html](https://schafermax809-arch.github.io/vwl-geldpolitik/retro.html) ist der vollständig bedienbare „VWL OS“-Desktop ebenfalls erreichbar: Pastell-Desktop, Terminal-Modus, Pixel-Symbole, verschiebbare und minimierbare Fenster, Taskleiste und ein animiertes ASCII-Zinslabor. Die Lernprogramme öffnen sich über `workbench.html` mit einem eigenen Retro-Stil. Die reguläre Startseite `index.html` öffnet jetzt VWL OS. Die frühere Oberfläche bleibt unter `classic.html` verfügbar. Kapitel-, Aufgaben- und Ergebnislinks öffnen über `lib/os-routes.js` direkt das passende Programmfenster.
 
-Es wird ein einziges Lernprogramm-Fenster wiederverwendet, sodass Klausuren, Aufgaben und Karten innerhalb derselben App-Instanz laufen. Lernstände werden unter dem vorhandenen Schlüssel gespeichert. Desktop-Thema und Fensterpositionen verwenden separat `vwl-os-preferences-v1`. Auf schmalen Bildschirmen werden Fenster untereinander angeordnet.
+Es wird ein einziges Lernprogramm-Fenster wiederverwendet, sodass Klausuren, Aufgaben und Karten innerhalb derselben App-Instanz laufen. Lernstände werden unter dem vorhandenen Schlüssel gespeichert. Desktop-Thema und Fensterpositionen verwenden separat `vwl-os-preferences-v1`. Auf schmalen Bildschirmen werden Fenster untereinander angeordnet. Maximierte Programme füllen die gesamte sichtbare Seite; Desktop, andere Fenster und Taskleiste werden ausgeblendet. Über „Vollbild verlassen“ oder Escape (auch aus dem Lernprogramm heraus) kehrt man ohne Neuladen zum Desktop zurück.
 
 ## Enthalten
 
