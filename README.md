@@ -42,7 +42,9 @@ tests/             Node-Tests für Lern- und Bewertungslogik
 
 ## Fortschritt und Datenschutz
 
-`localStorage` unter `weiter-geldpolitik-v1`, ohne Konto oder Tracking. Pro Thema 50 % für die eigene Lesemarkierung und 50 % für vollständig gelöste Aufgaben. Es zählt die letzte Bewertung; offene Fragen fließen durch Selbsteinschätzung ein. Der Gesamtwert ist der Mittelwert der Themen. Der Lernkompass zeigt erst nach mindestens drei Aufgaben pro Thema eine Einschätzung.
+`localStorage` unter `weiter-geldpolitik-v1`, ohne Konto oder Tracking. Antwortentwürfe in Übungen (einschließlich Begründungen und Teilantworten) werden je Aufgabe lokal gespeichert und nach Programmwechsel oder Neuladen wiederhergestellt. Sie zählen erst nach einer Bewertung zum Fortschritt. Alte Aufgabenlinks werden auf die überarbeitete PDF-Aufgabe aufgelöst; unbekannte Links zeigen eine klare Meldung. Einzeln geöffnete Aufgaben führen über „Weitere Aufgaben“ in den passenden Themenpool.
+
+Pro Thema 50 % für die eigene Lesemarkierung und 50 % für vollständig gelöste Aufgaben. Es zählt die letzte Bewertung; offene Fragen fließen durch Selbsteinschätzung ein. Der Gesamtwert ist der Mittelwert der Themen. Der Lernkompass zeigt erst nach mindestens drei Aufgaben pro Thema eine Einschätzung.
 
 JSON-Sicherung und bestätigter Import stehen unter „Material & Quellen“ bereit. Die Druckansicht der Handlungsprodukte kann über den Browser als PDF gespeichert werden. Daten werden nicht automatisch zwischen Geräten synchronisiert. Bei blockiertem oder vollem Browserspeicher erscheint ein Hinweis.
 

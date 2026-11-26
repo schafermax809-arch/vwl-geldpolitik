@@ -72,3 +72,17 @@ Geprüft bei 319 × 761 und 1280 × 720 CSS-Pixeln: Fenster beginnt bei (0, 0) u
 - Browser: Leitzinsregler auf 6 % gestellt; qualitative Richtungen für Kredit-/Sparzinsen, Kreditnachfrage, Konsum/Investitionen und Preisanstieg korrekt aktualisiert. Keine zusätzlichen Wirtschaftsindizes oder errechneten Kreditzinsen mehr.
 - Browser: Glossarsuche Realzins liefert null Begriffe und null Formeln; Kartenauswahl zeigt 37 Karten.
 - Die frühere Prüfung numerischer Laborindizes oben beschreibt den vorherigen Stand. Der jetzige Stand nutzt ausschließlich qualitative Wirkungsrichtungen.
+
+
+## Gesamtdurchsicht und Bedienkorrekturen (26. November 2026)
+
+- Geprüft: Aufgaben- und Bewertungsdaten, PDF-Inhaltsgrenze, Fortschritt, Speicherung, Karten, Navigation und Klausurablauf. Der frühere PDF-Abgleich bleibt die fachliche Grundlage; keine zusätzlichen Fachthemen eingeführt.
+- Reproduziert und behoben: Freitextantwort ging beim Wechsel ins Lexikon verloren. Entwürfe und Begründungen werden jetzt je Aufgabe gespeichert. Rückkehr und vollständiges Neuladen im Browser kontrolliert, einschließlich einer ausgewählten Falsch-Antwort.
+- Reproduziert und behoben: Ein nicht mehr vorhandener Aufgabenlink konnte die zuletzt geöffnete oder eine zufällige Aufgabe anzeigen. Bekannte frühere IDs führen zum PDF-Ersatz; unbekannte IDs zeigen eine Nicht-gefunden-Seite.
+- Behoben und im Browser geprüft: „Weitere Aufgaben“ führt nach einzeln geöffneter Aufgabe zum Themenpool mit zehn Aufgaben, statt dieselbe Einzelfrage zu wiederholen.
+- PDF-Materialbezug jetzt auch in jeder aufgeklappten Klausuraufgabe der Auswertung.
+- Handyprüfung bei 390 px und 320 px: Karten und lange Begriffe, Vorder-/Rückseite, Vollbild und Seitenbreite kontrolliert. Keine horizontale Überbreite im geprüften Karteninhalt. Das ist keine Prüfung aller Mobilgeräte.
+- Klausur im Browser gestartet: zwölf Aufgaben und Timer sichtbar. Teilzuordnung nach Neuladen erhalten, Timer fortlaufend. Abgabe zeigt sechs ausstehende offene Selbstbewertungen und vorläufige Punkte, keine vorgetäuschte endgültige Note. Alle zwölf Materialverweise vorhanden.
+- 15 automatisierte Tests bestanden, einschließlich PDF-Grenze, Klausurauswahl, aller sieben Formate bei gespeicherten Entwürfen und alter/ungültiger Aufgabenlinks. Syntax und Git-Diff geprüft.
+
+Weitere größere Verbesserungen sind in `REVIEW.md` priorisiert und noch nicht umgesetzt.

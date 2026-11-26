@@ -1,7 +1,7 @@
 import {resolveOSRoute} from './lib/os-routes.js';
-import {topics} from './data/content.js?v=4-pdf';
-import {questions} from './data/questions.js?v=4-pdf';
-import {load,topicProgress,esc,STORE} from './lib/core.js?v=4-pdf';
+import {topics} from './data/content.js?v=5-review';
+import {questions} from './data/questions.js?v=5-review';
+import {load,topicProgress,esc,STORE} from './lib/core.js?v=5-review';
 
 const $=s=>document.querySelector(s),desktop=$('#os-desktop');
 const preferences='vwl-os-preferences-v1';let config={theme:'pastel',positions:{}},z=20,drag=null,focusReturnScroll=0;
@@ -34,7 +34,7 @@ function launch(id,routeOverride){
  if(!resolved||resolved.id==='welcome')return;
  $('#program-title').textContent=resolved.file;$('#standalone-link').href='classic.html#'+hash;
  history.replaceState(null,'',location.pathname+location.search+'#'+hash);
- const frame=$('#program-frame');if(frame.getAttribute('src')==='about:blank')frame.src='workbench.html?v=4-pdf#'+hash;else frame.contentWindow.location.hash=hash;
+ const frame=$('#program-frame');if(frame.getAttribute('src')==='about:blank')frame.src='workbench.html?v=5-review#'+hash;else frame.contentWindow.location.hash=hash;
  openWindow('program');
 }
 function openFromAddress(){const r=resolveOSRoute(location.hash);if(!r)return;if(r.id==='welcome'){closeWindow('program',false);openWindow('welcome');return}launch(r.id,r.hash)}
