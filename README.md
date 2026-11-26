@@ -14,7 +14,7 @@ Es wird ein einziges Lernprogramm-Fenster wiederverwendet, sodass Klausuren, Auf
 
 ## Enthalten
 
-Sechs ausführliche Lernmodule, 60 kuratierte Aufgaben in sieben Formaten (darunter 24 offene Fragen), 40 Karteikarten mit Wiederholungsplanung, vier interaktive Simulationen, Glossar und fünf Rechenwege, Mindmap und Forderungskatalog, Dark/Light Mode sowie drei vollständig anwendbare Gestaltungen.
+Sechs ausführliche Lernmodule, 60 kuratierte Aufgaben in sieben Formaten (darunter 24 offene Fragen), 37 Karteikarten mit Wiederholungsplanung, vier interaktive Simulationen, Glossar und vier Rechenwege, Mindmap und Forderungskatalog, Dark/Light Mode sowie drei vollständig anwendbare Gestaltungen.
 
 Der Klausursimulator mischt zwölf Aufgaben aus allen sechs Themen, davon sechs offene. Anforderungsniveau und Zeitlimit sind einstellbar. Keine Lösungen während des Durchlaufs. Antworten und Ablaufzeit überstehen Neuladen. Nach Abgabe werden geschlossene Aufgaben automatisch ausgewertet. Offene Antworten werden ausdrücklich durch die lernende Person anhand von Musterlösungen und Kriterien bewertet. Erst nach vollständiger Selbstbewertung erscheint ein Gesamtprozentwert; keine automatische Textbenotung und keine offizielle Schulnote.
 
@@ -50,9 +50,11 @@ Karteikarten: „Nicht gewusst“ nach 5 Minuten; „Unsicher“ nach einem Tag;
 
 ## Material und fachliche Einordnung
 
-Primärmaterial: die vom Nutzer bereitgestellte `VWL 9.pdf` und die Checkliste „Lerngebiet 7: Geldpolitik“. PDF-Seiten 2–13 als Vorwissen, 14–50 als Geldpolitikmaterial und S. 68 als ergänzende Notiz. Außenhandel und alternative Währungen sind keine zusätzlichen Pflichtmodule. Die private PDF und das Foto werden nicht öffentlich im Repository gespeichert. Seitenverweise und fachliche Ergänzungen stehen in jedem Lernmodul.
+Die bereitgestellte `VWL 9.pdf` ist die einzige fachliche Grundlage. Die Checkliste strukturiert die sechs Module. PDF-Seiten 2–13 enthalten das Vorwissen, 14–50 das Geldpolitikmaterial und S. 68 eine Instrumentenübersicht. Die private PDF und das Foto werden nicht öffentlich gespeichert. Module und alle 60 eigenständig formulierten Aufgaben enthalten Seitenverweise. Eine Inhaltsübersicht mit Zuordnung und entfernten Erweiterungen steht in `CONTENT-SCOPE.md`.
 
-Die Aufgaben sind eigenständig formuliert. Buchaufgaben, deren vollständiger Text nicht vorliegt, wurden nicht rekonstruiert. Offizielle EZB-Quellen sind in der Anwendung verlinkt. Ältere Angaben des Materials werden korrigiert/eingeordnet: symmetrisches mittelfristiges 2-%-Ziel, übliche einwöchige Hauptrefinanzierung, mehrere Leitzinsen und die Rolle des Einlagesatzes. Bankreserven werden nicht als mechanische Kreditobergrenze behandelt. Das Labor ist ein explizit fiktives Richtungsmodell, keine Wirtschaftsprognose und keine Live-Datenquelle.
+Externe Fachergänzungen wurden am 26. November 2026 entfernt. Die Anwendung beschreibt bei zeitabhängigen oder widersprüchlichen Angaben ausdrücklich die Darstellung der PDF: Preisziel um 2 %, einwöchige Hauptrefinanzierung in den Arbeitsblättern gegenüber der älteren 14-Tage-Box. Die widersprüchliche Laufzeit wird nicht geprüft. Die Mindestreserve wird als vereinfachtes Arbeitsblattmodell behandelt. Das Zinslabor zeigt ausschließlich Wirkungsrichtungen aus der PDF mit frei gewählten Übungswerten, keine zusätzlichen Wirtschaftsformeln oder prognostizierten Kennzahlen.
+
+Geänderte Aufgaben erhalten neue IDs und Karten IDs nach ihrem Begriff, damit frühere Bewertungen nicht anderen Inhalten zugeordnet werden. Nicht mehr passende Antworten, Karten und Klausuren bleiben als `previousContent` im exportierbaren lokalen Lernstand erhalten. Unveränderte Aufgabenbewertungen, Notizen, Lesemarkierungen und Gestaltungseinstellungen bleiben nutzbar.
 
 ## Integration mit weiter.
 

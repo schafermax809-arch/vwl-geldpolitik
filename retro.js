@@ -1,7 +1,7 @@
 import {resolveOSRoute} from './lib/os-routes.js';
-import {topics} from './data/content.js';
-import {questions} from './data/questions.js';
-import {load,topicProgress,labModel,esc,STORE} from './lib/core.js';
+import {topics} from './data/content.js?v=4-pdf';
+import {questions} from './data/questions.js?v=4-pdf';
+import {load,topicProgress,esc,STORE} from './lib/core.js?v=4-pdf';
 
 const $=s=>document.querySelector(s),desktop=$('#os-desktop');
 const preferences='vwl-os-preferences-v1';let config={theme:'pastel',positions:{}},z=20,drag=null,focusReturnScroll=0;
@@ -34,7 +34,7 @@ function launch(id,routeOverride){
  if(!resolved||resolved.id==='welcome')return;
  $('#program-title').textContent=resolved.file;$('#standalone-link').href='classic.html#'+hash;
  history.replaceState(null,'',location.pathname+location.search+'#'+hash);
- const frame=$('#program-frame');if(frame.getAttribute('src')==='about:blank')frame.src='workbench.html?v=3-focus#'+hash;else frame.contentWindow.location.hash=hash;
+ const frame=$('#program-frame');if(frame.getAttribute('src')==='about:blank')frame.src='workbench.html?v=4-pdf#'+hash;else frame.contentWindow.location.hash=hash;
  openWindow('program');
 }
 function openFromAddress(){const r=resolveOSRoute(location.hash);if(!r)return;if(r.id==='welcome'){closeWindow('program',false);openWindow('welcome');return}launch(r.id,r.hash)}
@@ -61,7 +61,7 @@ function tasks(){$('#task-list').innerHTML=['welcome','lab','program','guide'].f
 $('#window-program').dataset.closed='true';$('#window-guide').dataset.closed='true';
 function closeWindow(id,closed){const w=$('#window-'+id);if(w.classList.contains('maximized'))setMaximized(id,false);w.hidden=true;w.dataset.closed=String(closed||(id==='program'&&$('#program-frame').getAttribute('src')==='about:blank'));if(id==='program'&&closed)history.replaceState(null,'',location.pathname+location.search);tasks()}
 let tick=0,rate=3;const format=(n,d=1)=>new Intl.NumberFormat('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
-function updateLab(animateOnly=false){const m=labModel(rate),up=rate>3,down=rate<3,direction=up?'RESTRIKTIVER IMPULS':down?'EXPANSIVER IMPULS':'AUSGANGSPUNKT',flow=up?'→':down?'→':'·',pulse=['·','•','·',' '][tick%4],credit=up?'teurer':down?'günstiger':'Kredite',demand=up?'sinkt':down?'steigt':'Nachfrage';$('#ascii-scene').textContent=`   ______          __________        /\\   /\\\n  / EZB /|        | GESCHÄFTS |      /  \\_/  \\\n | [€] | |  ${pulse} ${flow}  |   BANK   | ${pulse} ${flow} | WIRTSCH. |\n |_____|/         |__________|      |_________|\n   Zins ${up?'↑':down?'↓':'='}          ${credit.padEnd(10)}      ${demand}`;if(animateOnly)return;$('#lab-direction').textContent=direction;$('#os-rate-value').textContent=format(rate,2)+' %';$('#os-rate').setAttribute('aria-valuetext',format(rate,2)+' Prozent');$('#os-credit').textContent=format(m.credit)+' %';$('#os-demand').textContent=format(m.demand,0);$('#os-pressure').textContent=format(m.pressure,0);$('#lab-message').textContent=up?'> Nachfrage & Preisdruck werden tendenziell gedämpft.':down?'> Nachfrage & Preisdruck können tendenziell steigen.':'> Verändere den Zins und beobachte die Kette.'}
+function updateLab(animateOnly=false){const up=rate>3,down=rate<3,direction=up?'RESTRIKTIVER IMPULS':down?'EXPANSIVER IMPULS':'AUSGANGSPUNKT',flow=up?'→':down?'→':'·',pulse=['·','•','·',' '][tick%4],credit=up?'teurer':down?'günstiger':'Kredite',demand=up?'sinkt':down?'steigt':'Nachfrage';$('#ascii-scene').textContent=`   ______          __________        /\\   /\\\n  / EZB /|        | GESCHÄFTS |      /  \\_/  \\\n | [€] | |  ${pulse} ${flow}  |   BANK   | ${pulse} ${flow} | WIRTSCH. |\n |_____|/         |__________|      |_________|\n   Zins ${up?'↑':down?'↓':'='}          ${credit.padEnd(10)}      ${demand}`;if(animateOnly)return;$('#lab-direction').textContent=direction;$('#os-rate-value').textContent=format(rate,2)+' %';$('#os-rate').setAttribute('aria-valuetext',format(rate,2)+' Prozent');$('#os-credit').textContent=up?'höher':down?'niedriger':'gleich';$('#os-demand').textContent=up?'sinkt':down?'steigt':'gleich';$('#os-pressure').textContent=up?'gebremst':down?'angeregt':'gleich';$('#lab-message').textContent=up?'> Nachfrage & Preisdruck werden tendenziell gedämpft.':down?'> Nachfrage & Preisdruck können tendenziell steigen.':'> Verändere den Zins und beobachte die Kette.'}
 $('#os-rate').addEventListener('input',e=>{rate=+e.target.value;updateLab()});updateLab();if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{tick++;if(!$('#window-lab').hidden)updateLab(true)},650);
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.open){launch(b.dataset.open);$('#start-menu').hidden=true;$('#start-button').setAttribute('aria-expanded','false')}if(b.dataset.launch){launch(b.dataset.launch);$('#start-menu').hidden=true;$('#start-button').setAttribute('aria-expanded','false')}if(b.dataset.minimize)closeWindow(b.dataset.minimize,false);if(b.dataset.close)closeWindow(b.dataset.close,true);if(b.dataset.maximize)setMaximized(b.dataset.maximize);if(b.dataset.task)openWindow(b.dataset.task)});
 $('#start-button').addEventListener('click',()=>{const open=$('#start-menu').hidden;$('#start-menu').hidden=!open;$('#start-button').setAttribute('aria-expanded',String(open))});

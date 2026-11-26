@@ -58,3 +58,17 @@ Browserbedienung erfolgte über die verfügbaren Chrome-/In-App-Browserwerkzeuge
 Maximierte Programme füllen den gesamten Browser-Inhaltsbereich. Desktop, andere Fenster, Menü- und Taskleiste sind ausgeblendet. Eine schmale Programmleiste enthält „Vollbild verlassen“. Escape funktioniert auch aus dem eingebetteten Lernprogramm. Beim Zurückwechseln bleibt dieselbe Programm-Instanz mit ihren Eingaben erhalten.
 
 Geprüft bei 319 × 761 und 1280 × 720 CSS-Pixeln: Fenster beginnt bei (0, 0) und entspricht exakt der Viewport-Größe. Menü, Icons, andere Fenster und Taskleiste sind ausgeblendet. Escape aus einem Textfeld und der Rückkehrknopf erhalten die eingegebene Probeantwort. Auch das Zinslabor füllt die ganze Fläche aus.
+
+
+## Beschränkung auf die PDF (26. November 2026)
+
+- Texte, Musterlösungen, Kriterien, Karten, Glossar und Szenarien gegen Text und Bildseiten der PDF geprüft; Zuordnung siehe `CONTENT-SCOPE.md`.
+- Alle sechs Module und 60 Aufgaben enthalten Seitenverweise. 37 Karten und vier Rechenwege aus dem Material.
+- Entfernte Erweiterungen werden durch einen Regressionstest ausgeschlossen. Uneinheitliche Laufzeiten in der PDF werden erläutert und nicht als Quizfrage gestellt.
+- Insgesamt zwölf Node-Tests bestanden, einschließlich Klausurmischung sowie Schutz alter Bewertungen beim Wechsel des Aufgabenstands. JavaScript-Syntax und Git-Diff geprüft.
+- Browser: Transmissionsmodul mit vier materialbezogenen Begriffen im Vollbild kontrolliert. Die zusätzlichen Kanal-Vertiefungen fehlen.
+- Browser: Mindestreserve-Lückentext mit 500.000 € Einlagen, 1 %/2 % und Antworten 5.000/10.000 € korrekt mit 2/2 Punkten bewertet; Materialbezug S. 41 sichtbar.
+- Browser: Auswahl der Wirkungsketten enthält nur expansive und restriktive Geldpolitik.
+- Browser: Leitzinsregler auf 6 % gestellt; qualitative Richtungen für Kredit-/Sparzinsen, Kreditnachfrage, Konsum/Investitionen und Preisanstieg korrekt aktualisiert. Keine zusätzlichen Wirtschaftsindizes oder errechneten Kreditzinsen mehr.
+- Browser: Glossarsuche Realzins liefert null Begriffe und null Formeln; Kartenauswahl zeigt 37 Karten.
+- Die frühere Prüfung numerischer Laborindizes oben beschreibt den vorherigen Stand. Der jetzige Stand nutzt ausschließlich qualitative Wirkungsrichtungen.
